@@ -1,0 +1,31 @@
+server:
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+    context-path: /api
+  address: 0.0.0.0
+  port: 9999
+
+spring:
+  profiles:
+    active: dev
+
+
+# Develop
+---
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        SQL: debug
+  file:
+    name: ./demo.log
+
+spring:
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
