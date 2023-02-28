@@ -11,21 +11,3 @@ server:
 spring:
   profiles:
     active: dev
-
-
-# Develop
----
-logging:
-  level:
-    root: info
-    org:
-      hibernate:
-        SQL: debug
-  file:
-    name: ./demo.log
-
-spring:
-
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
