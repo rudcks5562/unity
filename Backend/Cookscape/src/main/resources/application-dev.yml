@@ -1,3 +1,7 @@
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
 spring:
 
   mvc:
@@ -9,12 +13,14 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        show-sql: false
-        format_sql: false
+        format_sql: true
     generate-ddl: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     defer-datasource-initialization: true
+
+    show-sql: true
+
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
