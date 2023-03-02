@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/LJW/TestCarrot.unity
+- path: Assets/Scenes/LJW/TestCarrotMovement.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
