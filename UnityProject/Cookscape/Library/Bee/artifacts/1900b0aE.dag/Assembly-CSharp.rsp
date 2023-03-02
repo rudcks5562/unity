@@ -348,13 +348,9 @@
 "Assets/ImportedAsset/KriptoFX/IceShader/Scripts/FreezeBehaviour.cs"
 "Assets/ImportedAsset/KriptoFX/IceShader/Scripts/Gui.cs"
 "Assets/ImportedAsset/LowPolyWater_Pack/Scripts/LowPolyWater.cs"
-"Assets/Scripts/common/CollisionHandler.cs"
-"Assets/Scripts/common/PlayerCommonController.cs"
 "Assets/Scripts/Commons/GameConstants.cs"
 "Assets/Scripts/Commons/InputHandler.cs"
 "Assets/Scripts/Commons/PlayerCommonController.cs"
-"Assets/Scripts/MAIN/GameConstants.cs"
-"Assets/Scripts/MAIN/InputHandler.cs"
 "Assets/Scripts/RaycastTester.cs"
 -langversion:9.0
 
