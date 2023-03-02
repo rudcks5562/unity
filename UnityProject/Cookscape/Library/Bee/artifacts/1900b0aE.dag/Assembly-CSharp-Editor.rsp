@@ -361,6 +361,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/ImportedAsset/Blink/Art/Characters/LowPoly/Editor/MaterialTilingOffset.cs"
+"Assets/ImportedAsset/LowPolyWater_Pack/Scripts/Editor/GeneratePlane.cs"
 -langversion:9.0
 
 /deterministic
