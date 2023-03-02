@@ -1,7 +1,7 @@
 package com.ssafy.cookscape.global.util;
 
-import com.ssafy.cookscape.global.model.response.ResponseErrorDto;
-import com.ssafy.cookscape.global.model.response.ResponseSuccessDto;
+import com.ssafy.cookscape.global.common.model.response.ResponseErrorDto;
+import com.ssafy.cookscape.global.common.model.response.ResponseSuccessDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 

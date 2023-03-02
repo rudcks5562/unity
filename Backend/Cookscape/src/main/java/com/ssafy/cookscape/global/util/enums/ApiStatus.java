@@ -29,7 +29,7 @@ public enum ApiStatus {
 	RESOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 리소스입니다.", false),
 	CONFLICT(HttpStatus.CONFLICT, "클라이언트의 요청에서 충돌이 감지되었습니다.", false),
 	DUPLICATION(HttpStatus.CONFLICT, "요청 값이 중복되었습니다.", false),
-//	EMAIL_DUPLICATION(HttpStatus.CONFLICT, "이미 가입된 이메일입니다.", false),
+	ID_DUPLICATION(HttpStatus.CONFLICT, "이미 가입된 아이디입니다.", false),
 	NICKNAME_DUPLICATION(HttpStatus.CONFLICT, "이미 사용중인 닉네임입니다.", false),
 
 //	INVALID_TOKEN(HttpStatus.BAD_REQUEST, "유효하지 않은 토큰입니다", false),
