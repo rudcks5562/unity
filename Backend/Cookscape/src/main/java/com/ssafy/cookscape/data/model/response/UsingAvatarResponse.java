@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class UserAvatarInfo {
+public class UsingAvatarResponse {
 
     private Long userAvatarId;
     private Long avatarId;
@@ -16,9 +16,9 @@ public class UserAvatarInfo {
     private String detail;
     private int useCount;
 
-    public static UserAvatarInfo toDto(UserAvatarEntity userAvatar){
+    public static UsingAvatarResponse toDto(UserAvatarEntity userAvatar){
 
-        return UserAvatarInfo.builder()
+        return UsingAvatarResponse.builder()
                 .userAvatarId(userAvatar.getId())
                 .avatarId(userAvatar.getAvatar().getId())
                 .name(userAvatar.getAvatar().getName())

@@ -45,6 +45,8 @@ public class SecurityConfig {
 			.antMatchers("/csrf").permitAll() // swagger csrf 엔드포인트 오류를 지우기 위함 2
 			.antMatchers("/error/*").permitAll()
 			.antMatchers("/*/user", "/*/user/**").permitAll()
+			.antMatchers("/*/data", "/*/data/**").permitAll()
+			.antMatchers("/*/information", "/*/information/**").permitAll()
 			.anyRequest().authenticated();
 
 //		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

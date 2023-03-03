@@ -1,6 +1,7 @@
 package com.ssafy.cookscape.information.controller;
 
 import com.ssafy.cookscape.data.service.DataService;
+import com.ssafy.cookscape.information.service.InformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1/information")
 public class InformationController {
 
-    private final DataService dataService;
+    private final InformationService informationService;
 
-
-//    // 게임 기본 데이터 전달
-//    @GetMapping("/all")
-//    @ApiOperation(value = "게임 기본 데이터 조회")
-//    public ResponseEntity<?> getAllInformation(){
-//        return ResponseEntity.ok()
-//    }
+    // 게임 기본 데이터 전달
+    @GetMapping("/all")
+    @ApiOperation(value = "게임 기본 데이터 조회")
+    public ResponseEntity<?> getAllInformation(){
+        return ResponseEntity.ok(informationService.getGameInformation());
+    }
 
 }

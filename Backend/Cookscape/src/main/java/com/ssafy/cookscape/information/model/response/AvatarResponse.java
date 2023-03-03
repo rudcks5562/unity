@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class AvatarInfo {
+public class AvatarResponse {
 
     private Long avatarId;
     private String name;
@@ -16,9 +16,9 @@ public class AvatarInfo {
     private float speed;
     private float jump;
 
-    public static AvatarInfo toDto(AvatarEntity avatar){
+    public static AvatarResponse toDto(AvatarEntity avatar){
 
-        return AvatarInfo.builder()
+        return AvatarResponse.builder()
                 .avatarId(avatar.getId())
                 .name(avatar.getName())
                 .detail(avatar.getDetail())

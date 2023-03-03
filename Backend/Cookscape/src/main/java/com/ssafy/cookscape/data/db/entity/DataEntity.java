@@ -1,12 +1,15 @@
 package com.ssafy.cookscape.data.db.entity;
 
 import com.ssafy.cookscape.global.common.db.entity.BaseEntity;
+import com.ssafy.cookscape.user.db.entity.UserEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 
@@ -16,6 +19,7 @@ import javax.persistence.*;
 @Getter
 @SuperBuilder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
 public class DataEntity extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
@@ -24,6 +28,9 @@ public class DataEntity extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", columnDefinition = "INT UNSIGNED")
     private Long id;
+
+    @OneToOne(mappedBy = "data", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private UserEntity user;
 
     @Column(name = "exp")
     @ColumnDefault("0")
