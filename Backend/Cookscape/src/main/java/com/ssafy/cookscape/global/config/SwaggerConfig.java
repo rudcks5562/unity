@@ -28,11 +28,27 @@ public class SwaggerConfig {
 	}
 
 	@Bean
-	public Docket authApi() {
+	public Docket userApi() {
 		String version = "v1";
-		return buildDocket("회원 " + version, Predicates
+		return buildDocket("유저 " + version, Predicates
 			.or(PathSelectors.ant("/" + version + "/user"),
 				PathSelectors.ant("/" + version + "/user/**")));
+	}
+
+	@Bean
+	public Docket dataApi() {
+		String version = "v1";
+		return buildDocket("유저데이터" + version, Predicates
+				.or(PathSelectors.ant("/" + version + "/data"),
+						PathSelectors.ant("/" + version + "/data/**")));
+	}
+
+	@Bean
+	public Docket informationApi() {
+		String version = "v1";
+		return buildDocket("게임정보" + version, Predicates
+				.or(PathSelectors.ant("/" + version + "/information"),
+						PathSelectors.ant("/" + version + "/information/**")));
 	}
 
 	@Bean

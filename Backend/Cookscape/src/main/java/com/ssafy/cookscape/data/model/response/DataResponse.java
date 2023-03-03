@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class DataInfo {
+public class DataResponse {
 
     private Long dataId;
     private int exp;
@@ -23,9 +23,9 @@ public class DataInfo {
     private int valveCloseCount;
     private int potDestroyCount;
 
-    public static DataInfo toDto(DataEntity data){
+    public static DataResponse toDto(DataEntity data){
 
-        return DataInfo.builder()
+        return DataResponse.builder()
                 .dataId(data.getId())
                 .exp(data.getExp())
                 .level(data.getLevel())

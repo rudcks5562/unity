@@ -8,16 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ItemInfo {
+public class ItemResponse {
 
     private Long itemId;
     private String name;
     private String detail;
     private int weight;
 
-    public static ItemInfo toDto(ItemEntity item) {
+    public static ItemResponse toDto(ItemEntity item) {
 
-        return ItemInfo.builder()
+        return ItemResponse.builder()
                 .itemId(item.getId())
                 .name(item.getName())
                 .detail(item.getDetail())
