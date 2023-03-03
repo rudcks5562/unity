@@ -22,9 +22,11 @@ namespace UnityProject.Cookscape {
         // Update is called once per frame
         void Update()
         {
-            RaycastHit hitData = commonRaycast.ShootRay(2f);
+            RaycastHit hitData = commonRaycast.ShootRay(10f);
+            Debug.Log(hitData);
             if (hitData.collider) {
                 Debug.Log("뭔가 있음...");
+                Debug.Log(hitData.collider.tag);
                 if (hitData.collider.tag == "Equipment" && inputHandler.GetEKeyInputDown()) {
                     GameObject equipment = hitData.collider.gameObject;
                     Equip(equipment);
