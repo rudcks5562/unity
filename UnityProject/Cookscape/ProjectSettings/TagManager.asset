@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EquipPoint
   - Equipment
+  - Catch
   layers:
   - Default
   - TransparentFX
