@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - EquipPoint
+  - Equipment
   - Catch
   layers:
   - Default
@@ -12,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Interactable
   - FloorLayer
   - 
   - 
