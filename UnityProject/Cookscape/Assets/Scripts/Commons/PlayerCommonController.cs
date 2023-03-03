@@ -5,22 +5,22 @@ namespace UnityProject.Cookscape
     public class PlayerCommonController : MonoBehaviour
     {
         [Header("References")]
-        [Tooltip("ÇÃ·¹ÀÌ¾îÀÇ ¸ÞÀÎÄ«¸Þ¶ó")]
+        [Tooltip("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ä«ï¿½Þ¶ï¿½")]
         public Transform PlayerCamera;
 
-        [Tooltip("°È´Â ¼Ò¸®")]
+        [Tooltip("ï¿½È´ï¿½ ï¿½Ò¸ï¿½")]
         public AudioSource PlayerWalkingAudioSource;
 
-        [Tooltip("´Þ¸®´Â ¼Ò¸®")]
+        [Tooltip("ï¿½Þ¸ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½")]
         public AudioSource PlayerRunningAudioSource;
 
-        [Tooltip("Á¡ÇÁ ¼Ò¸®")]
+        [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½")]
         public AudioSource PlayerJumpingAudioSource;
 
-        [Tooltip("ÇÃ·¹ÀÌ¾îÀÇ rigidbody")]
+        [Tooltip("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ rigidbody")]
         public Rigidbody PlayerBody;
 
-        [Tooltip("¹ß Ã¼Å©")]
+        [Tooltip("ï¿½ï¿½ Ã¼Å©")]
         public Transform FeetTransform;
 
         [Tooltip("Check FloorLayer")]
@@ -31,38 +31,38 @@ namespace UnityProject.Cookscape
         //CharacterController characterController;
 
 
-        //³Ê ¶¥¿¡ ´ê¾ÆÀÖ´Ï?
+        //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½?
         public bool IsGround { get; private set; }
-        //Áö±Ý Á¡ÇÁÇß´Ï
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½
         public bool HasJumpedThisFrame { get; private set; }
-        //¶¥¿¡ ´ê¾ÆÀÖ´Ù°í ÆÇÁ¤ÇÏ´Â °Å¸®
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Å¸ï¿½
         [Tooltip("distance from the bottom of the character controller capsule to test for grounded")]
         public float GroundCheckDistance = 0.05f;
-        //ÃÊ±â Ä«¸Þ¶ó ¼¼·Î °¢µµ
+        //ï¿½Ê±ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public float CameraVerticalAngle = 20f;
-        //ÃÊ±â Ä«¸Þ¶ó °¡·Î °¢µµ
+        //ï¿½Ê±ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         public float CameraHorizonalAngle = 0f;
-        //ÃÖ´ë ¼Óµµ
+        //ï¿½Ö´ï¿½ ï¿½Óµï¿½
         public float MaxSpeedOnGround = 10f;
-        //Ä³¸¯ÅÍ ¼Óµµ
+        //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
         public Vector3 CharacterVelocity { get; set; }
 
         Vector3 GroundNormal;
-        //¸¶Áö¸·À¸·Î Á¡ÇÁÇÑ ½Ã°£
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
         float LastJumpedTime = -10;
 
         bool IsRunning = false;
         bool IsCrouched = false;
 
-        //ÇÏ´Ã¿¡ ÀÖÀ» ¶§ ¶¥¿¡ ´ê¾ÆÀÖ´Ù°í ÆÇÁ¤ÇÏ´Â °Å¸®
+        //ï¿½Ï´Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Å¸ï¿½
         const float GroundCheckDistanceInAir = 0.07f;
-        //ÃÖ¼ÒÇÑ ÇÏ´Ã¿¡ ¶° ÀÖ¾î¾ß ÇÏ´Â ½Ã°£
+        //ï¿½Ö¼ï¿½ï¿½ï¿½ ï¿½Ï´Ã¿ï¿½ ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ã°ï¿½
         const float JumpGroundingPreventionTime = 0.2f;
-        //È¸Àü ¼Óµµ
+        //È¸ï¿½ï¿½ ï¿½Óµï¿½
         [SerializeField] float RotationSpeed = 20f;
-        //Á¡ÇÁ ¼Óµµ
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½
         [SerializeField] float JumpForce = 9f;
-        //ÀÌµ¿ ¼Óµµ
+        //ï¿½Ìµï¿½ ï¿½Óµï¿½
         [SerializeField] float MovementSpeed = 10f;
         float ModifiedMovementSpeed
         {
@@ -112,7 +112,7 @@ namespace UnityProject.Cookscape
 
             if (transform.position.y < -10)
             {
-                Debug.Log("¾ß Áö±Ý ³Ê¹« ³·¾Æ");
+                Debug.Log("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½");
             }
 
             HasJumpedThisFrame = false;
@@ -121,25 +121,25 @@ namespace UnityProject.Cookscape
             CheckGround();
             //PlayerAnimator.SetBool(GameConstants.playerOnGround, IsGround);
 
-            //¶¥¿¡ ¸· ºÎµúÈù ¼ø°£
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (IsGround && !wasGrounded)
             {
                 PlayerAnimator.SetBool(GameConstants.playerJumpNow, false);
-                Debug.Log("ÂøÁö!");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½!");
             }
 
-            //´Þ¸®±â&¾É±â¸¦ ¸¸µé´Ù¸é?
+            //ï¿½Þ¸ï¿½ï¿½ï¿½&ï¿½É±â¸¦ ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½?
             if (inputHandler.GetRunKeyInputDown())
             {
                 IsRunning = true;
                 IsCrouched = false;
-                Debug.Log("´Þ·Á!");
+                Debug.Log("ï¿½Þ·ï¿½!");
             }
             else if (inputHandler.GetCrouchKeyInputDown())
             {
                 IsRunning = false;
                 IsCrouched = true;
-                Debug.Log("¿õÅ©·Á");
+                Debug.Log("ï¿½ï¿½Å©ï¿½ï¿½");
             }
 
             if (IsRunning && !inputHandler.GetRunKeyInputHeld())
@@ -163,7 +163,7 @@ namespace UnityProject.Cookscape
                 return;
             }
 
-            //Feet°¡ Floor Layer¿¡ ´ê¾ÆÀÖ´Â°¡??
+            //Feetï¿½ï¿½ Floor Layerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´Â°ï¿½??
             if (Physics.CheckSphere(FeetTransform.position, GroundCheckDistanceInAir, FloorMask))
             {
                 PlayerAnimator.SetBool(GameConstants.playerJumpNow, false);
@@ -176,49 +176,49 @@ namespace UnityProject.Cookscape
 
         void HandleMovement()
         {
-            //Ä³¸¯ÅÍ ½Ã¾ßÀÇ °¡·Î È¸Àü
+            //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
             {
-                //Alt ¹öÆ°À» ´©¸£°í ÀÖ³ª¿ä?
+                //Alt ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö³ï¿½ï¿½ï¿½?
                 if (inputHandler.GetAltInputHeld())
                 {
-                    //Ä«¸Þ¶ó °¢µµ¸¸ º¯°æ
+                    //Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     CameraHorizonalAngle += inputHandler.GetLookInputHorizontal() * RotationSpeed * rotationMultiplier;
                 }
                 else
                 {
-                    //À¯Àú È¸Àü
+                    //ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
                     PlayerBody.MoveRotation(PlayerBody.rotation * Quaternion.Euler(new Vector3(0f, (inputHandler.GetLookInputHorizontal() * RotationSpeed * rotationMultiplier), 0f)));
                 }
 
-                //Alt¿¡¼­ ¼Õ¶¼¸é ½Ã¾ß Á¤¸é
+                //Altï¿½ï¿½ï¿½ï¿½ ï¿½Õ¶ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (inputHandler.GetAltInputUp())
                 {
                     CameraHorizonalAngle = 0f;
                 }
 
-                //Ä«¸Þ¶ó °¢µµ°¡ ³Ê¹« µ¹¾Æ°¡Áö ¾Ê°Ô Á¦ÇÑ
+                //Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
                 CameraHorizonalAngle = Mathf.Clamp(CameraHorizonalAngle, -179f, 179f);
             }
 
-            //Ä³¸¯ÅÍ ½Ã¾ßÀÇ ¼¼·Î È¸Àü
+            //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
             {
                 CameraVerticalAngle += inputHandler.GetLookInputVertical() * RotationSpeed * rotationMultiplier;
                 CameraVerticalAngle = Mathf.Clamp(CameraVerticalAngle, -49f, 79f);
             }
 
-            //½ÇÁ¦ Ä«¸Þ¶ó °¢µµ º¯°æ
+            //ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             PlayerCamera.transform.localEulerAngles = new Vector3(CameraVerticalAngle, CameraHorizonalAngle, 0f);
 
             {
 
-                //¶¥¿¡ ´ê¾ÆÀÖ´Ï?
+                //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½?
                 if (IsGround)
                 {
 
-                    //ÀÔ·Â°ª ¹Þ±â
+                    //ï¿½Ô·Â°ï¿½ ï¿½Þ±ï¿½
                     Vector3 inputVector = inputHandler.GetMoveInput();
 
-                    //½ÇÁ¦ º¤ÅÍ °è»ê
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
                     Vector3 moveVector = transform.TransformDirection(inputVector) * ModifiedMovementSpeed;
 
                     int animateZ = 0;
@@ -241,21 +241,21 @@ namespace UnityProject.Cookscape
                         animateX = -1;
                     }
 
-                    //¾Ö´Ï¸ÞÀÌ¼Ç ÀÛµ¿
+                    //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ûµï¿½
                     PlayerAnimator.SetFloat(GameConstants.playerVerticalVelocity, animateZ * 0.5f * GravityForAnimator);
                     PlayerAnimator.SetFloat(GameConstants.playerHorizonalVelocity, animateX * 0.5f * GravityForAnimator);
 
 
-                    //¼Óµµ ºÎ¿©ÇÏ±â
+                    //ï¿½Óµï¿½ ï¿½Î¿ï¿½ï¿½Ï±ï¿½
                     PlayerBody.velocity = new Vector3(moveVector.x, PlayerBody.velocity.y, moveVector.z);
 
-                    //°È´Â ¼Ò¸®°¡ ÀÖ´Ù¸é
+                    //ï¿½È´ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½
                     if (PlayerWalkingAudioSource != null)
                     {
-                        //¿òÁ÷ÀÌ°í ÀÖ´Ù¸é °È´Â ¼Ò¸® ³»±â
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½È´ï¿½ ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½
                         if (moveVector.x != 0 || moveVector.z != 0)
                         {
-                            //Àç»ý ÁßÀÌ ¾Æ´Ï¶ó¸é Àç»ý
+                            //ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½
                             if (!PlayerWalkingAudioSource.isPlaying)
                             {
                                 PlayerWalkingAudioSource.Play();
@@ -268,26 +268,26 @@ namespace UnityProject.Cookscape
                     }
                     else
                     {
-                        Debug.LogAssertion("ÇÃ·¹ÀÌ¾î °È´Â ¼Ò¸®°¡ ¾ø½À´Ï´Ù");
+                        Debug.Log("do not have walk sound");
                     }
 
-                    //Á¡ÇÁ ¹öÆ° ´©¸§?
+                    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½ï¿½ï¿½ï¿½?
                     if (inputHandler.GetJumpInputDown())
                     {
-                        //Â«-ÇÁ
+                        //Â«-ï¿½ï¿½
                         PlayerBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
 
-                        //Á¡ÇÁ ¾Ö´Ï¸ÞÀÌ¼Ç ¤¡¤¡
+                        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
                         PlayerAnimator.SetTrigger(GameConstants.playerJumpTrigger);
                         PlayerAnimator.SetBool(GameConstants.playerJumpNow, true);
 
-                        //¿õÅ©¸®±â »óÅÂ ÇØÁ¦
+                        //ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                         if (IsCrouched)
                         {
                             IsCrouched = false;
                         }
 
-                        //Á¡ÇÁ ¼Ò¸®?
+                        //ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½?
                         if (PlayerJumpingAudioSource != null)
                         {
                             if (!PlayerJumpingAudioSource.isPlaying)
@@ -297,10 +297,10 @@ namespace UnityProject.Cookscape
                         }
                         else
                         {
-                            Debug.LogAssertion("ÇÃ·¹ÀÌ¾î Á¡ÇÁ ¼Ò¸®°¡ ¾ø½À´Ï´Ù");
+                            Debug.Log("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
                         }
 
-                        //³»°¡ Á¡ÇÁÇÑ ½Ã°£ ±â¾ïÇÏ±â
+                        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
                         LastJumpedTime = Time.time;
                         HasJumpedThisFrame = true;
 
@@ -310,10 +310,10 @@ namespace UnityProject.Cookscape
                         IsGround = false;
                     }
                 }
-                //³­ °øÁß¿¡ ÀÖ¼­
+                //ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ö¼ï¿½
                 else
                 {
-                    //¹» ÇØ¾ßÇÏ³ª
+                    //ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Ï³ï¿½
                 }
             }
         }
