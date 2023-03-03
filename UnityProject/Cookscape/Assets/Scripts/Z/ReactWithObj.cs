@@ -25,8 +25,7 @@ namespace UnityProject.Cookscape {
             RaycastHit hitData = commonRaycast.ShootRay(10f);
             Debug.Log(hitData);
             if (hitData.collider) {
-                Debug.Log("뭔가 있음...");
-                Debug.Log(hitData.collider.tag);
+                Debug.Log("Something there...");
                 if (hitData.collider.tag == "Equipment" && inputHandler.GetEKeyInputDown()) {
                     GameObject equipment = hitData.collider.gameObject;
                     Equip(equipment);
@@ -36,6 +35,13 @@ namespace UnityProject.Cookscape {
 
         void Equip(GameObject other)
         { 
+            Collider[] objectColliders = other.GetComponents<Collider>();
+            Rigidbody objectRigidbody = other.GetComponent<Rigidbody>();
+            foreach(Collider collider in objectColliders) {
+                collider.enabled = false;
+            }
+            objectRigidbody.isKinematic = true;
+
             other.transform.SetParent(playerEquipPoint.transform);
             other.transform.localPosition = Vector3.zero;
             other.transform.rotation = new Quaternion(0, 0, 0, 0);
