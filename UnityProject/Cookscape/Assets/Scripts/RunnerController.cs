@@ -24,7 +24,7 @@ public class RunnerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hitData = commonRaycast.ShootRay(10f);
+        RaycastHit hitData = commonRaycast.ShootRay(5f);
         Debug.Log(hitData);
 
         // DO NOT HAVE EQUIPTMENT
