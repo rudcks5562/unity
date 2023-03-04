@@ -48,6 +48,15 @@ public class RunnerController : MonoBehaviour
                         m_GameManager.HideGuideText();
                         m_GameManager.setGuideText("");
                     }
+                } else if (hitData.collider.tag == "Interactive") {
+                    // SHOW GUIDE TEXT
+                    m_GameManager.showGuideText();
+                    m_GameManager.setGuideText("Press (E) To Interact");
+
+                    // PRESS 'E'
+                    if (m_InputHandler.GetEKeyInputDown()) {
+                        
+                    }
                 }
             } else {
                 m_GameManager.HideGuideText();
