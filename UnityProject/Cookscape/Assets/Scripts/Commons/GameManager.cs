@@ -15,6 +15,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI guideText;
     public Slider gaugeSlider;
 
+    void Start()
+    {
+        gaugeSlider = GameObject.Find("Gauge_Info").GetComponent<Slider>();
+    }
+
     public void SetGuideText(string msg)
     {
         guideText.text = msg;
@@ -37,13 +42,11 @@ public class GameManager : MonoBehaviour
 
     public void ShowGaugeInfo()
     {
-        if (gaugeSlider == null) return;
         gaugeSlider.gameObject.SetActive(true);
     }
 
     public void HideGaugeInfo()
     {
-        if (gaugeSlider == null) return;
         gaugeSlider.gameObject.SetActive(false);
     }
 }

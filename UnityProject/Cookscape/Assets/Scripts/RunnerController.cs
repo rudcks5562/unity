@@ -47,10 +47,15 @@ public class RunnerController : MonoBehaviour
             IInteractable interactableObj = m_CurrentInteractingObj.GetComponent<Collider>().GetComponent<IInteractable>();
             if (interactableObj != null) {
                 interactableObj.ChargeGauge();
-                // Debug.Log(interactableObj.GetGauge());
+                float gauge = interactableObj.GetGauge();
+                m_GameManager.SetGauge(gauge);
 
                 // SHOW GAUGE INFO
                 m_GameManager.ShowGaugeInfo();
+
+                // SHOW GAUGE VALUE ON THE GUIDE TEXT
+                m_GameManager.ShowGuideText();
+                m_GameManager.SetGuideText("Processing... " + (int)gauge + "%");
             }
         }
 
