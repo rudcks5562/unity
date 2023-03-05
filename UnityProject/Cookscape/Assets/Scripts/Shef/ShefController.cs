@@ -33,8 +33,8 @@ public class ShefController : MonoBehaviour
     {
         m_PlayerCommonController = GetComponent<PlayerCommonController>();
 
-        m_PlayerAnimator = m_PlayerCommonController.PlayerAnimator;
-        m_InputHandler = m_PlayerCommonController.inputHandler;
+        m_PlayerAnimator = GetComponent<Animator>();
+        m_InputHandler = GetComponent<InputHandler>();
 
         m_TriggerVolume = GetComponent<ShefTriggerVolume>();
 

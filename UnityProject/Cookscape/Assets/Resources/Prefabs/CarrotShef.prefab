@@ -641,6 +641,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &-4120050627401989875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842763565474239805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a646471c83c766408cc72517241a17b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
+  player: {fileID: 0}
+  menuPanel: {fileID: 0}
+  gamePanel: {fileID: 0}
+  guideText: {fileID: 0}
 --- !u!114 &144548971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,6 +671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShefWeapon: {fileID: 1779898854}
+  m_JailMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &144548972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -682,7 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006addf01ef063641a1b5bc0b4d64306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerBack: {fileID: 9214148574853659868}
+  m_PlayerCatchPoint: {fileID: 0}
 --- !u!114 &699053375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +837,8 @@ MonoBehaviour:
   FloorMask:
     serializedVersion: 2
     m_Bits: 128
+  PlayerAnimator: {fileID: 0}
+  inputHandler: {fileID: 0}
   GroundCheckDistance: 0.05
   CameraVerticalAngle: 20
   CameraHorizonalAngle: 0
@@ -824,8 +846,3 @@ MonoBehaviour:
   RotationSpeed: 200
   JumpForce: 5
   MovementSpeed: 6
---- !u!4 &9214148574853659868 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 696259150396789936, guid: 78a6558289caece4bb57955a6d029f9b, type: 3}
-  m_PrefabInstance: {fileID: 8536194094036609132}
-  m_PrefabAsset: {fileID: 0}
