@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//FPS Tutorial ÂüÁ¶
-//À¯ÀúÀÇ Input ÇÚµé¸µ ¿ë
+//FPS Tutorial ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Input ï¿½Úµé¸µ ï¿½ï¿½
 namespace UnityProject.Cookscape
 {
     public class InputHandler : MonoBehaviour
@@ -34,14 +34,14 @@ namespace UnityProject.Cookscape
             Cursor.visible = false;
         }
 
-        //Áö±Ý ÀÎÇ² ¹Þ¾Æµµ µÇ´ÂÁö Ã¼Å©
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç² ï¿½Þ¾Æµï¿½ ï¿½Ç´ï¿½ï¿½ï¿½ Ã¼Å©
         public bool CanProcessInput()
         {
             //Cursor Status is Locked ? True : False
             return Cursor.lockState == CursorLockMode.Locked;
         }
 
-        //¾ó¸¶³ª ÀÌµ¿ÇÏ´ÂÁö ¹Þ±â
+        //ï¿½ó¸¶³ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Þ±ï¿½
         public Vector3 GetMoveInput()
         {
             lastXInput = 0;
@@ -58,7 +58,7 @@ namespace UnityProject.Cookscape
                 return move;
             }
 
-            //ÀÎÇ² ±ÝÁö
+            //ï¿½ï¿½Ç² ï¿½ï¿½ï¿½ï¿½
             return Vector3.zero;
         }
 
@@ -107,13 +107,13 @@ namespace UnityProject.Cookscape
             return 0f;
         }
 
-        //ÁÂ¿ì ½ÃÁ¡ÀÌµ¿ ¹Þ±â
+        //ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Þ±ï¿½
         public float GetLookInputHorizontal()
         {
             return GetMouseLookAxis(GameConstants.mouseAxisNameHorizontal);
         }
 
-        //¼¼·Î ½ÃÁ¡ÀÌµ¿ ¹Þ±â
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Þ±ï¿½
         public float GetLookInputVertical()
         {
             return GetMouseLookAxis(GameConstants.mouseAxisNameVertical);
@@ -162,6 +162,15 @@ namespace UnityProject.Cookscape
             if (CanProcessInput())
             {
                 return Input.GetKeyDown(KeyCode.E);
+            }
+            return false;
+        }
+
+        public bool GetEKeyHeldDown()
+        {
+            if (CanProcessInput())
+            {
+                return Input.GetKey(KeyCode.E);
             }
             return false;
         }

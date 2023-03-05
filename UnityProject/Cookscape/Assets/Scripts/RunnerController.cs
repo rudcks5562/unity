@@ -15,6 +15,8 @@ public class RunnerController : MonoBehaviour
 
     // MEMBER VARIABLES
     private bool m_IsEquiped = false;
+    private bool m_IsInteracting = false;
+    private Collider m_CurrentInteractingObj;
 
 
     void Awake()
@@ -29,16 +31,39 @@ public class RunnerController : MonoBehaviour
     {
         RaycastHit hitData = m_CommonRaycast.ShootRay(5f);
 
-        // DO NOT HAVE EQUIPTMENT
-        if (!m_IsEquiped) {
-            if (hitData.collider) {
-                // THERE IS AN EQUIPMENT
-                if (hitData.collider.tag == "Equipment") {
-                    // SHOW GUIDE TEXT
-                    m_GameManager.showGuideText();
-                    m_GameManager.setGuideText("Press (F) To Equip");
+        // YOU HAVE AN EQUIPTMENT & PRESS 'F'
+        if (m_IsEquiped && m_InputHandler.GetFKeyInputDown()) {
+            Drop();
+        }
 
-                    // PRESS 'F'
+        // YOU ARE INTERACTING
+        if (m_IsInteracting && !m_InputHandler.GetEKeyHeldDown()) {
+            m_IsInteracting = false;
+            m_CurrentInteractingObj = null;
+
+            // HIDE GAUGE INFO
+            m_GameManager.HideGaugeInfo();
+        } else if (m_IsInteracting && m_InputHandler.GetEKeyHeldDown()) {
+            IInteractable interactableObj = m_CurrentInteractingObj.GetComponent<Collider>().GetComponent<IInteractable>();
+            if (interactableObj != null) {
+                interactableObj.ChargeGauge();
+                // Debug.Log(interactableObj.GetGauge());
+
+                // SHOW GAUGE INFO
+                m_GameManager.ShowGaugeInfo();
+            }
+        }
+
+        // THERE IS SOMETHING OBJECT
+        if (hitData.collider) {
+            // IT IS EQUIPTMENT
+            if (hitData.collider.tag == "Equipment") {
+                if (!m_IsEquiped) {
+                    // SHOW GUIDE TEXT
+                    m_GameManager.ShowGuideText();
+                    m_GameManager.SetGuideText("Press (F) To Equip");
+
+                    // YOU DON'T HAVE AN EQUIPTMENT & PRESS 'F'
                     if (m_InputHandler.GetFKeyInputDown()) {
                         // IF YOU HAS AN EQUIPMENT
                         if (m_IsEquiped) return;
@@ -46,27 +71,27 @@ public class RunnerController : MonoBehaviour
                         GameObject equipment = hitData.collider.gameObject;
                         Equip(equipment);
                         m_GameManager.HideGuideText();
-                        m_GameManager.setGuideText("");
-                    }
-                } else if (hitData.collider.tag == "Interactive") {
-                    // SHOW GUIDE TEXT
-                    m_GameManager.showGuideText();
-                    m_GameManager.setGuideText("Press (E) To Interact");
-
-                    // PRESS 'E'
-                    if (m_InputHandler.GetEKeyInputDown()) {
-                        
+                        m_GameManager.SetGuideText("");
                     }
                 }
-            } else {
-                m_GameManager.HideGuideText();
-                m_GameManager.setGuideText("");
+            } else if (hitData.collider.tag == "InteractiveObject") { // IT IS INTERACTIVE OBJECT
+                if (!m_IsInteracting) {
+                    // SHOW GUIDE TEXT
+                    m_GameManager.ShowGuideText();
+                    m_GameManager.SetGuideText("Press (E) To Interact");
+
+                    // START INTERACTING
+                    if (m_InputHandler.GetEKeyHeldDown()) {
+                        m_IsInteracting = true;
+                        m_CurrentInteractingObj = hitData.collider;
+                    }
+                }
             }
-        } else { // HAVE EQUIPMENT
-            // PRESS 'F'
-            if (m_InputHandler.GetFKeyInputDown()) {
-                Drop();
-            }
+        } else {
+            m_GameManager.HideGuideText();
+            m_GameManager.SetGuideText("");
+
+            m_GameManager.HideGaugeInfo();
         }
     }
 
