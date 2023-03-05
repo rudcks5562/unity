@@ -26,8 +26,8 @@ namespace UnityProject.Cookscape
         [Tooltip("Check FloorLayer")]
         public LayerMask FloorMask;
 
-        Animator PlayerAnimator;
-        InputHandler inputHandler;
+        public Animator PlayerAnimator;
+        public InputHandler inputHandler;
         //CharacterController characterController;
 
 
