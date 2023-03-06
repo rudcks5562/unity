@@ -19,6 +19,6 @@ public class NetworkTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Connect....");
-        PhotonNetwork.Instantiate("Prefabs/Carrot", Vector3.zero, Quaternion.identity);
-    }
+        PhotonNetwork.Instantiate("Prefabs/CarrotRPC", Vector3.zero, Quaternion.identity);
+    }   
 }
