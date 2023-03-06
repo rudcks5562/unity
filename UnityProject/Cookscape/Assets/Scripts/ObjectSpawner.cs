@@ -12,18 +12,21 @@ public class ObjectSpawner : MonoBehaviour
     // member variables
     public int m_PotCount = 3;
     public int m_valveCount = 3;
-    public int m_SpawnPointCount = 8;
+    int m_SpawnPointCount;
 
-    void Start()
+    void Awake()
     {
         GenerateRandomObjectSpawnPoints();
     }
 
     void GenerateRandomObjectSpawnPoints()
     {
+        m_SpawnPointCount = ObjectSpawnPoints.Length;
         int count = 0;
+
         int[] seq = new int[m_SpawnPointCount];
         bool[] isSelected = new bool[m_SpawnPointCount];
+        
         // 랜덤한 수열 생성
         while (count < m_PotCount + m_valveCount) {
             int number = Random.Range(0, m_SpawnPointCount);
