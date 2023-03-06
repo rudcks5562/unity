@@ -81,7 +81,7 @@ public class ShefController : MonoBehaviour
         if (seekObjectsBody == null )
         {
             m_GameManger.HideGuideText();
-            m_GameManger.setGuideText("");
+            m_GameManger.SetGuideText("");
             return;
         }
 
@@ -95,8 +95,8 @@ public class ShefController : MonoBehaviour
             if (true && !IsCatching)
             {
                 Debug.Log("Search Catchable Player!");
-                m_GameManger.setGuideText("Press (E) To Catch");
-                m_GameManger.showGuideText();
+                m_GameManger.SetGuideText("Press (E) To Catch");
+                m_GameManger.ShowGuideText();
 
                 //And You Click E????
                 if (m_InputHandler.GetEKeyInputDown())
@@ -113,7 +113,7 @@ public class ShefController : MonoBehaviour
                     m_CatchOther.DoCatch(seekObject);
 
                     m_GameManger.HideGuideText();
-                    m_GameManger.setGuideText("");
+                    m_GameManger.SetGuideText("");
                 }
             }
         }
